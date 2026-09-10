@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Приглашение на свидание 💖</title>
+<title>Приглашение на свидание</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,13 +25,14 @@
     position: relative;
   }
 
+  /* ---------- Карточка ---------- */
   .card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 30px;
-    padding: 45px 22px 35px;
+    padding: 50px 24px 45px;
     max-width: 480px;
     width: 100%;
     text-align: center;
@@ -41,16 +42,16 @@
     z-index: 2;
   }
 
-  /* ---------- Еноты-маскоты (2 штуки, в верхних углах) ---------- */
+  /* ---------- Еноты-маскоты ---------- */
   .raccoon {
     position: absolute;
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     animation: bobble 3s ease-in-out infinite;
     z-index: 3;
   }
-  .raccoon-tl { top: -30px; left: -20px; }
-  .raccoon-tr { top: -35px; right: -20px; animation-delay: 0.5s; }
+  .raccoon-tl { top: -28px; left: -18px; }
+  .raccoon-tr { top: -32px; right: -18px; animation-delay: 0.5s; }
   .raccoon svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 6px rgba(180,120,110,0.25)); }
 
   @keyframes bobble {
@@ -60,6 +61,45 @@
   .raccoon-tl { --rot: -15deg; }
   .raccoon-tr { --rot: 15deg; }
 
+  /* ---------- Декоративные сердечки (рисованные) ---------- */
+  .deco-heart {
+    position: absolute;
+    color: #e63946;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .deco-heart svg { width: 100%; height: 100%; display: block; }
+
+  .deco-heart-1 {
+    width: 90px;
+    height: 90px;
+    bottom: -25px;
+    left: -25px;
+    transform: rotate(-15deg);
+    animation: bobble 4s ease-in-out infinite;
+    --rot: -15deg;
+  }
+  .deco-heart-2 {
+    width: 55px;
+    height: 55px;
+    top: 260px;
+    right: -22px;
+    transform: rotate(20deg);
+    animation: bobble 3.5s ease-in-out infinite 0.4s;
+    --rot: 20deg;
+  }
+  .deco-heart-3 {
+    width: 70px;
+    height: 70px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%) rotate(8deg);
+    animation: bobble 4.5s ease-in-out infinite 0.8s;
+    --rot: 8deg;
+    opacity: 0.85;
+  }
+
+  /* ---------- Типографика ---------- */
   .subtitle {
     font-family: 'Marck Script', cursive;
     font-size: 1.9rem;
@@ -84,11 +124,12 @@
     font-size: 1.8rem;
     font-weight: 700;
     color: #b36b62;
-    margin-bottom: 22px;
+    margin-bottom: 26px;
     letter-spacing: 0.5px;
     animation: slideUp 1s ease-out 0.7s both;
   }
 
+  /* ---------- Детали ---------- */
   .details {
     background: #fff4f0;
     border-radius: 20px;
@@ -109,13 +150,22 @@
     text-align: left;
   }
   .detail-item:last-child { margin-bottom: 0; }
-  .detail-icon { font-size: 1.25rem; flex-shrink: 0; }
+
+  .detail-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 35 C8 27 3 18 8 11 C13 5 19 8 20 13 C21 8 27 5 32 11 C37 18 32 27 20 35 Z' fill='none' stroke='%23e63946' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
   /* ---------- План свидания ---------- */
   .plan {
     background: linear-gradient(135deg, #fff8f5 0%, #fff4f0 100%);
     border-radius: 20px;
-    padding: 20px 20px 18px;
+    padding: 22px 20px 18px;
     margin-bottom: 22px;
     text-align: left;
     border: 1px solid #f5e0d9;
@@ -125,10 +175,10 @@
 
   .plan h3 {
     font-family: 'Marck Script', cursive;
-    font-size: 1.5rem;
+    font-size: 1.55rem;
     color: #c98b83;
     text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     font-weight: 400;
   }
 
@@ -136,83 +186,44 @@
 
   .plan li {
     font-size: 1.05rem;
-    padding: 8px 0 8px 34px;
+    padding: 10px 0 10px 34px;
     position: relative;
     color: #6d5b54;
     line-height: 1.45;
     border-bottom: 1px dashed #f5e0d9;
   }
-  .plan li:last-child { border-bottom: none; }
+  .plan li:last-child { border-bottom: none; padding-bottom: 0; }
 
   .plan li::before {
+    content: "";
     position: absolute;
     left: 0;
-    top: 8px;
-    font-size: 1.15rem;
-  }
-  .plan li:nth-child(1)::before { content: "🦝"; }
-  .plan li:nth-child(2)::before { content: "🍰"; }
-  .plan li:nth-child(3)::before { content: "🌙"; }
-
-  .countdown-title {
-    font-family: 'Marck Script', cursive;
-    font-size: 1.5rem;
-    color: #c98b83;
-    margin-bottom: 12px;
-    animation: slideUp 1s ease-out 1.1s both;
-  }
-
-  .countdown {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 22px;
-    animation: slideUp 1s ease-out 1.2s both;
-  }
-
-  .countdown-item {
-    background: linear-gradient(135deg, #fff 0%, #fff4f0 100%);
-    border: 1px solid #f0d5cd;
-    border-radius: 14px;
-    padding: 10px 4px;
-    min-width: 62px;
-    box-shadow: 0 4px 10px rgba(217, 154, 154, 0.15);
-  }
-
-  .countdown-num {
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #b36b62;
-    line-height: 1;
-    display: block;
-  }
-
-  .countdown-label {
-    font-size: 0.75rem;
-    color: #997f76;
-    margin-top: 4px;
-    display: block;
-    letter-spacing: 0.5px;
+    top: 12px;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 35 C8 27 3 18 8 11 C13 5 19 8 20 13 C21 8 27 5 32 11 C37 18 32 27 20 35 Z' fill='none' stroke='%23e63946' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   /* ---------- От тебя требуется ---------- */
   .requirements {
     background: rgba(255, 244, 240, 0.7);
     border-radius: 20px;
-    padding: 18px 20px;
+    padding: 20px 20px 18px;
     margin-bottom: 22px;
     text-align: left;
     border: 1px solid #f5e0d9;
-    animation: slideUp 1s ease-out 1.3s both;
+    animation: slideUp 1s ease-out 1.2s both;
   }
 
   .requirements h3 {
     font-family: 'Marck Script', cursive;
-    font-size: 1.4rem;
+    font-size: 1.55rem;
     color: #c98b83;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-weight: 400;
   }
 
@@ -220,23 +231,24 @@
 
   .requirements li {
     font-size: 1.05rem;
-    padding: 5px 0 5px 30px;
+    padding: 6px 0 6px 30px;
     position: relative;
     color: #6d5b54;
-    line-height: 1.35;
+    line-height: 1.4;
   }
 
   .requirements li::before {
+    content: "";
     position: absolute;
     left: 0;
-    top: 5px;
-    font-size: 1rem;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 35 C8 27 3 18 8 11 C13 5 19 8 20 13 C21 8 27 5 32 11 C37 18 32 27 20 35 Z' fill='none' stroke='%23e63946' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
-  .requirements li:nth-child(1)::before { content: "✨"; }
-  .requirements li:nth-child(2)::before { content: "😊"; }
-  .requirements li:nth-child(3)::before { content: "💖"; }
-  .requirements li:nth-child(4)::before { content: "🎵"; }
-  .requirements li:nth-child(5)::before { content: "🌸"; }
 
   /* ---------- Карта ---------- */
   .map-wrap {
@@ -245,7 +257,7 @@
     overflow: hidden;
     border: 2px solid #f5e0d9;
     box-shadow: 0 6px 16px rgba(200, 150, 140, 0.15);
-    animation: slideUp 1s ease-out 1.4s both;
+    animation: slideUp 1s ease-out 1.3s both;
   }
 
   .map-wrap iframe {
@@ -269,16 +281,17 @@
     background: #fff4f0;
     border: 1px solid #f5e0d9;
     transition: background 0.2s;
+    animation: slideUp 1s ease-out 1.35s both;
   }
   .map-link:active { background: #fceee9; }
 
   /* ---------- Вопрос и кнопки ---------- */
   .question {
     font-family: 'Marck Script', cursive;
-    font-size: 1.9rem;
+    font-size: 2rem;
     color: #b36b62;
     margin-bottom: 20px;
-    animation: slideUp 1s ease-out 1.5s both;
+    animation: slideUp 1s ease-out 1.4s both;
     line-height: 1.2;
   }
 
@@ -287,17 +300,17 @@
     flex-direction: column;
     gap: 12px;
     align-items: center;
-    animation: slideUp 1s ease-out 1.6s both;
+    animation: slideUp 1s ease-out 1.5s both;
   }
 
   .btn {
     background: linear-gradient(135deg, #e8b4b8 0%, #d99a9a 100%);
     color: white;
     border: none;
-    padding: 16px 36px;
-    font-size: 1.15rem;
-    font-family: 'Comfortaa', sans-serif;
-    font-weight: 600;
+    padding: 14px 36px;
+    font-size: 1.6rem;
+    font-family: 'Marck Script', cursive;
+    font-weight: 400;
     border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(217, 154, 154, 0.4);
@@ -306,6 +319,7 @@
     max-width: 320px;
     letter-spacing: 0.5px;
     -webkit-tap-highlight-color: transparent;
+    line-height: 1.2;
   }
 
   .btn:active {
@@ -318,7 +332,7 @@
     color: #b36b62;
     border: 2px solid #e8b4b8;
     box-shadow: none;
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
   .btn-secondary:active { background: #fff4f0; }
 
@@ -328,7 +342,7 @@
     font-size: 1.7rem;
     color: #b36b62;
     text-align: center;
-    line-height: 1.35;
+    line-height: 1.4;
     padding: 10px 0;
     animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
@@ -345,7 +359,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ---------- Летящие частицы ---------- */
+  /* ---------- Летящие сердечки при нажатии ---------- */
   .particle {
     position: fixed;
     bottom: -60px;
@@ -366,16 +380,46 @@
     .subtitle { font-size: 1.6rem; }
     h1 { font-size: 1.35rem; }
     .place-title { font-size: 1.5rem; }
-    .card { padding: 40px 16px 30px; }
-    .countdown-item { min-width: 54px; padding: 8px 3px; }
-    .countdown-num { font-size: 1.25rem; }
-    .raccoon { width: 70px; height: 70px; }
-    .raccoon-tl { top: -25px; left: -15px; }
-    .raccoon-tr { top: -28px; right: -15px; }
+    .card { padding: 45px 16px 40px; }
+    .raccoon { width: 65px; height: 65px; }
+    .raccoon-tl { top: -22px; left: -14px; }
+    .raccoon-tr { top: -25px; right: -14px; }
+    .deco-heart-1 { width: 70px; height: 70px; bottom: -18px; left: -18px; }
+    .deco-heart-2 { width: 45px; height: 45px; right: -16px; }
+    .deco-heart-3 { width: 55px; height: 55px; top: -22px; }
+    .btn { font-size: 1.4rem; }
+    .btn-secondary { font-size: 1.25rem; }
+    .question { font-size: 1.75rem; }
   }
 </style>
 </head>
 <body>
+
+  <!-- Скрытые определения: сердечко-контур со штриховкой -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <clipPath id="heartClip">
+        <path d="M100,175 C40,135 15,90 40,55 C65,25 95,40 100,65 C105,40 135,25 160,55 C185,90 160,135 100,175 Z"/>
+      </clipPath>
+      <symbol id="scribble-heart" viewBox="0 0 200 200">
+        <!-- Штриховка внутри сердечка -->
+        <g clip-path="url(#heartClip)" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+          <line x1="-20" y1="40" x2="220" y2="0"/>
+          <line x1="-20" y1="58" x2="220" y2="18"/>
+          <line x1="-20" y1="76" x2="220" y2="36"/>
+          <line x1="-20" y1="94" x2="220" y2="54"/>
+          <line x1="-20" y1="112" x2="220" y2="72"/>
+          <line x1="-20" y1="130" x2="220" y2="90"/>
+          <line x1="-20" y1="148" x2="220" y2="108"/>
+          <line x1="-20" y1="166" x2="220" y2="126"/>
+          <line x1="-20" y1="184" x2="220" y2="144"/>
+        </g>
+        <!-- Контур сердечка -->
+        <path d="M100,175 C40,135 15,90 40,55 C65,25 95,40 100,65 C105,40 135,25 160,55 C185,90 160,135 100,175 Z"
+              fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+    </defs>
+  </svg>
 
   <div class="card">
 
@@ -425,33 +469,38 @@
       </svg>
     </div>
 
+    <!-- Декоративное сердечко сверху по центру -->
+    <div class="deco-heart deco-heart-3" aria-hidden="true">
+      <svg><use href="#scribble-heart"/></svg>
+    </div>
+
     <div class="subtitle">Самая красивая девушка в мире</div>
     <h1>приглашается в</h1>
-    <div class="place-title">Енот-банду 💖</div>
+    <div class="place-title">Енот-банду</div>
 
     <!-- Детали -->
     <div class="details">
       <div class="detail-item">
-        <span class="detail-icon">📅</span>
+        <span class="detail-icon"></span>
         <span>Пятница, 18 сентября</span>
       </div>
       <div class="detail-item">
-        <span class="detail-icon">⏰</span>
+        <span class="detail-icon"></span>
         <span>13:00</span>
       </div>
       <div class="detail-item">
-        <span class="detail-icon">📍</span>
+        <span class="detail-icon"></span>
         <span>г. Москва, ул. Щербаковская, 41А</span>
       </div>
       <div class="detail-item">
-        <span class="detail-icon">🚇</span>
+        <span class="detail-icon"></span>
         <span>м. Электрозаводская / Семёновская</span>
       </div>
     </div>
 
     <!-- План на свидание -->
     <div class="plan">
-      <h3>Наш план на этот день:</h3>
+      <h3>Наш план на этот день</h3>
       <ul>
         <li>Познакомиться с пушистыми енотами — умиляться и смеяться вместе</li>
         <li>Разделить вкусный ужин и тёплый разговор обо всём на свете</li>
@@ -459,30 +508,9 @@
       </ul>
     </div>
 
-    <!-- Отсчёт -->
-    <div class="countdown-title">До нашей встречи осталось:</div>
-    <div class="countdown" id="countdown">
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-days">--</span>
-        <span class="countdown-label">дней</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-hours">--</span>
-        <span class="countdown-label">часов</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-minutes">--</span>
-        <span class="countdown-label">минут</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-seconds">--</span>
-        <span class="countdown-label">секунд</span>
-      </div>
-    </div>
-
     <!-- От тебя требуется -->
     <div class="requirements">
-      <h3>От тебя требуется:</h3>
+      <h3>От тебя требуется</h3>
       <ul>
         <li>Хорошее настроение</li>
         <li>Тёплая улыбка и удобная обувь</li>
@@ -505,57 +533,35 @@
        href="https://yandex.ru/maps/?text=Москва, Щербаковская улица, 41А"
        target="_blank"
        rel="noopener">
-      🗺 Открыть в Яндекс.Картах →
+      Открыть в Яндекс.Картах →
     </a>
 
+    <!-- Декоративное сердечко справа (около вопроса) -->
+    <div class="deco-heart deco-heart-2" aria-hidden="true">
+      <svg><use href="#scribble-heart"/></svg>
+    </div>
+
     <!-- Вопрос и кнопки -->
-    <div class="question" id="questionText">Ты согласна? 🥺</div>
+    <div class="question" id="questionText">Ты согласна?</div>
 
     <div class="buttons" id="buttonsBlock">
-      <button class="btn" id="yesBtn">Я согласна 💖</button>
-      <button class="btn btn-secondary" id="ofCourseBtn">Конечно да! ✨</button>
+      <button class="btn" id="yesBtn">Я согласна</button>
+      <button class="btn btn-secondary" id="ofCourseBtn">Конечно да</button>
     </div>
 
     <div class="success-msg" id="successMsg">
-      Урааа! 🎉<br>Я очень рад! 💖<br>Значит, идём вместе 🥰
+      Урааа!<br>Я очень рад!<br>Значит, идём вместе
+    </div>
+
+    <!-- Декоративное сердечко слева снизу -->
+    <div class="deco-heart deco-heart-1" aria-hidden="true">
+      <svg><use href="#scribble-heart"/></svg>
     </div>
 
   </div>
 
 <script>
-  /* ---------- Отсчёт времени ---------- */
-  // 18 сентября 2026, 13:00
-  const TARGET = new Date(2026, 8, 18, 13, 0, 0).getTime();
-
-  const elDays = document.getElementById('cd-days');
-  const elHours = document.getElementById('cd-hours');
-  const elMins = document.getElementById('cd-minutes');
-  const elSecs = document.getElementById('cd-seconds');
-  const cdTitle = document.querySelector('.countdown-title');
-
-  function pad(n) { return n < 10 ? '0' + n : n; }
-
-  function tick() {
-    const diff = TARGET - Date.now();
-    if (diff <= 0) {
-      cdTitle.textContent = 'Время пришло! 💖';
-      elDays.textContent = '00';
-      elHours.textContent = '00';
-      elMins.textContent = '00';
-      elSecs.textContent = '00';
-      return;
-    }
-    const sec = Math.floor(diff / 1000);
-    elDays.textContent = pad(Math.floor(sec / 86400));
-    elHours.textContent = pad(Math.floor((sec % 86400) / 3600));
-    elMins.textContent = pad(Math.floor((sec % 3600) / 60));
-    elSecs.textContent = pad(sec % 60);
-  }
-
-  tick();
-  setInterval(tick, 1000);
-
-  /* ---------- Праздничные частицы ---------- */
+  /* ---------- Праздничные сердечки при нажатии ---------- */
   const HEARTS = ['❤️', '💖', '💗', '💓', '💕', '💝', '💘'];
   const BALLOONS = ['🎈', '🎈', '🎈', '🎉', '✨', '🌸'];
 
@@ -565,7 +571,7 @@
       setTimeout(() => {
         const el = document.createElement('div');
         el.className = 'particle';
-        const isBalloon = Math.random() < 0.4;
+        const isBalloon = Math.random() < 0.35;
         el.textContent = isBalloon
           ? BALLOONS[Math.floor(Math.random() * BALLOONS.length)]
           : HEARTS[Math.floor(Math.random() * HEARTS.length)];
@@ -601,7 +607,7 @@
     setTimeout(() => spawnParticles(40), 1200);
 
     buttonsBlock.style.display = 'none';
-    questionText.textContent = 'Ты самая лучшая! 💖';
+    questionText.textContent = 'Ты самая лучшая';
     successMsg.classList.add('show');
 
     setTimeout(() => {
@@ -611,10 +617,6 @@
 
   yesBtn.addEventListener('click', accept);
   ofCourseBtn.addEventListener('click', accept);
-
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) tick();
-  });
 </script>
 
 </body>
