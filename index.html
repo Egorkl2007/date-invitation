@@ -11,8 +11,8 @@
 
 <style>
   :root {
-    --ink: #3a2820;       /* тёмно-коричневый для иконок */
-    --heart-red: #e63946; /* красный для сердечек */
+    --ink: #3a2820;
+    --heart-red: #e63946;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,32 +76,23 @@
   .deco-heart svg { width: 100%; height: 100%; display: block; }
 
   .deco-heart-1 {
-    width: 90px;
-    height: 90px;
-    bottom: -25px;
-    left: -25px;
+    width: 90px; height: 90px;
+    bottom: -25px; left: -25px;
     animation: bobble 4s ease-in-out infinite;
-    --rot: -12deg;
-    transform: rotate(-12deg);
+    --rot: -12deg; transform: rotate(-12deg);
   }
   .deco-heart-2 {
-    width: 55px;
-    height: 55px;
-    top: 280px;
-    right: -22px;
+    width: 55px; height: 55px;
+    top: 400px; right: -22px;
     animation: bobble 3.5s ease-in-out infinite 0.4s;
-    --rot: 18deg;
-    transform: rotate(18deg);
+    --rot: 18deg; transform: rotate(18deg);
   }
   .deco-heart-3 {
-    width: 70px;
-    height: 70px;
-    top: -30px;
-    left: 50%;
+    width: 70px; height: 70px;
+    top: -30px; left: 50%;
     margin-left: -35px;
     animation: bobble 4.5s ease-in-out infinite 0.8s;
-    --rot: 6deg;
-    transform: rotate(6deg);
+    --rot: 6deg; transform: rotate(6deg);
     opacity: 0.92;
   }
 
@@ -164,10 +155,161 @@
   }
   .detail-item:last-child { margin-bottom: 0; }
 
-  .detail-icon {
-    width: 22px;
-    height: 22px;
+  .detail-icon { width: 22px; height: 22px; }
+
+  /* ============================================================ */
+  /* ============ АЛЬБОМ С ПОЛАРОИДАМИ ============================ */
+  /* ============================================================ */
+  .album {
+    margin-bottom: 22px;
+    padding: 36px 12px 30px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(180, 150, 120, 0.18), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(160, 130, 100, 0.15), transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(200, 175, 145, 0.08), transparent 70%),
+      #ede2d2;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 1s ease-out 1.05s both;
+    /* Лёгкая "крапинка" как старая бумага */
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(180,150,120,0.2) 0.5px, transparent 1px),
+      radial-gradient(circle at 70% 60%, rgba(180,150,120,0.15) 0.5px, transparent 1px),
+      radial-gradient(circle at 40% 80%, rgba(180,150,120,0.18) 0.5px, transparent 1px),
+      radial-gradient(circle at 85% 25%, rgba(180,150,120,0.15) 0.5px, transparent 1px),
+      radial-gradient(circle at 15% 20%, rgba(180, 150, 120, 0.18), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(160, 130, 100, 0.15), transparent 50%);
+    background-size: 40px 40px, 50px 50px, 45px 45px, 55px 55px, 100% 100%, 100% 100%;
   }
+
+  .album-title {
+    font-family: 'Marck Script', cursive;
+    font-size: 1.5rem;
+    color: #8b6e55;
+    text-align: center;
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+  }
+
+  .polaroids {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 14px;
+    padding: 0 6px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .polaroid {
+    background: #fefdfb;
+    padding: 7px 7px 26px 7px;
+    box-shadow:
+      0 8px 18px rgba(80, 60, 50, 0.18),
+      0 2px 4px rgba(80, 60, 50, 0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .polaroid:nth-child(1) { transform: rotate(-5deg) translateY(-2px); }
+  .polaroid:nth-child(2) { transform: rotate(4.5deg) translateY(8px); }
+  .polaroid:nth-child(3) { transform: rotate(3deg) translateY(-4px); }
+  .polaroid:nth-child(4) { transform: rotate(-3.5deg) translateY(6px); }
+
+  .photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #d4c4b0;
+    overflow: hidden;
+    position: relative;
+  }
+  .photo svg { width: 100%; height: 100%; display: block; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Полароидная подпись снизу */
+  .polaroid-caption {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Marck Script', cursive;
+    font-size: 0.78rem;
+    color: #8b7a68;
+    letter-spacing: 0.4px;
+    line-height: 1.1;
+    padding: 0 4px;
+  }
+
+  /* Кусочки скотча */
+  .tape {
+    position: absolute;
+    width: 46px;
+    height: 14px;
+    background: rgba(196, 158, 88, 0.5);
+    z-index: 4;
+    box-shadow: 0 1px 2px rgba(80, 60, 50, 0.12);
+    pointer-events: none;
+  }
+
+  .polaroid:nth-child(1) .tape {
+    top: -8px; left: 10px;
+    transform: rotate(-9deg);
+    clip-path: polygon(3% 12%, 97% 4%, 100% 88%, 0 96%);
+  }
+  .polaroid:nth-child(2) .tape {
+    top: -8px; right: 8px;
+    transform: rotate(11deg);
+    clip-path: polygon(2% 6%, 98% 10%, 100% 92%, 0 88%);
+  }
+  .polaroid:nth-child(3) .tape {
+    top: -8px; left: 50%;
+    margin-left: -22px;
+    transform: rotate(4deg);
+    clip-path: polygon(0 8%, 100% 4%, 98% 90%, 2% 96%);
+  }
+  .polaroid:nth-child(4) .tape {
+    top: -8px; left: 12px;
+    transform: rotate(-6deg);
+    clip-path: polygon(3% 10%, 97% 6%, 100% 90%, 0 94%);
+  }
+
+  /* Засушенные веточки в углах */
+  .dried-flower {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.85;
+  }
+  .dried-flower-1 {
+    top: 12px;
+    right: 8px;
+    width: 90px;
+    height: 130px;
+    transform: rotate(12deg);
+  }
+  .dried-flower-2 {
+    bottom: 14px;
+    left: 6px;
+    width: 80px;
+    height: 110px;
+    transform: rotate(-18deg);
+  }
+
+  /* Разбросанные звёздочки */
+  .star {
+    position: absolute;
+    color: #b8a084;
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 3;
+  }
+  .star-1 { top: 22%; left: 8%;  width: 9px;  height: 9px;  transform: rotate(15deg); }
+  .star-2 { top: 65%; right: 12%; width: 7px;  height: 7px;  transform: rotate(-25deg); }
+  .star-3 { bottom: 18%; right: 30%; width: 8px; height: 8px; transform: rotate(40deg); }
+  .star-4 { top: 42%; right: 5%; width: 6px;  height: 6px;  transform: rotate(-10deg); }
+  .star-5 { bottom: 35%; left: 4%; width: 7px; height: 7px;  transform: rotate(60deg); }
 
   /* ---------- План свидания ---------- */
   .plan {
@@ -177,7 +319,7 @@
     margin-bottom: 22px;
     text-align: left;
     border: 1px solid #f5e0d9;
-    animation: slideUp 1s ease-out 1s both;
+    animation: slideUp 1s ease-out 1.15s both;
     box-shadow: 0 4px 12px rgba(217, 154, 154, 0.1);
   }
 
@@ -218,7 +360,7 @@
     margin-bottom: 22px;
     text-align: left;
     border: 1px solid #f5e0d9;
-    animation: slideUp 1s ease-out 1.2s both;
+    animation: slideUp 1s ease-out 1.25s both;
   }
 
   .requirements h3 {
@@ -247,8 +389,6 @@
     width: 20px;
     height: 20px;
   }
-
-  /* Красное сердечко в списке требований */
   .req-icon-heart { color: var(--heart-red); }
 
   /* ---------- Карта ---------- */
@@ -258,7 +398,7 @@
     overflow: hidden;
     border: 2px solid #f5e0d9;
     box-shadow: 0 6px 16px rgba(200, 150, 140, 0.15);
-    animation: slideUp 1s ease-out 1.3s both;
+    animation: slideUp 1s ease-out 1.35s both;
   }
 
   .map-wrap iframe {
@@ -282,7 +422,7 @@
     background: #fff4f0;
     border: 1px solid #f5e0d9;
     transition: background 0.2s;
-    animation: slideUp 1s ease-out 1.35s both;
+    animation: slideUp 1s ease-out 1.4s both;
   }
   .map-link:active { background: #fceee9; }
 
@@ -292,7 +432,7 @@
     font-size: 2rem;
     color: #b36b62;
     margin-bottom: 20px;
-    animation: slideUp 1s ease-out 1.4s both;
+    animation: slideUp 1s ease-out 1.45s both;
     line-height: 1.2;
   }
 
@@ -301,7 +441,7 @@
     flex-direction: column;
     gap: 12px;
     align-items: center;
-    animation: slideUp 1s ease-out 1.5s both;
+    animation: slideUp 1s ease-out 1.55s both;
   }
 
   .btn {
@@ -315,7 +455,7 @@
     border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(217, 154, 154, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
     max-width: 320px;
     letter-spacing: 0.5px;
@@ -353,14 +493,13 @@
     0% { opacity: 0; transform: scale(0.5); }
     100% { opacity: 1; transform: scale(1); }
   }
-
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ---------- Летящие сердечки при нажатии ---------- */
+  /* ---------- Летящие сердечки ---------- */
   .particle {
     position: fixed;
     bottom: -60px;
@@ -386,25 +525,30 @@
     .raccoon-tl { top: -22px; left: -14px; }
     .raccoon-tr { top: -25px; right: -14px; }
     .deco-heart-1 { width: 72px; height: 72px; bottom: -20px; left: -20px; }
-    .deco-heart-2 { width: 44px; height: 44px; right: -16px; }
+    .deco-heart-2 { width: 44px; height: 44px; right: -16px; top: 340px; }
     .deco-heart-3 { width: 56px; height: 56px; top: -24px; margin-left: -28px; }
     .btn { font-size: 1.4rem; }
     .btn-secondary { font-size: 1.25rem; }
     .question { font-size: 1.75rem; }
+    .album { padding: 28px 6px 24px; }
+    .album-title { font-size: 1.3rem; }
+    .polaroids { gap: 14px 10px; padding: 0 2px; }
+    .polaroid { padding: 5px 5px 22px 5px; }
+    .polaroid-caption { font-size: 0.68rem; }
+    .tape { width: 38px; height: 12px; }
   }
 </style>
 </head>
 <body>
 
-  <!-- ================= СКРЫТЫЕ SVG: ИКОНКИ И СЕРДЕЧКИ ================= -->
+  <!-- ============ СКРЫТЫЕ SVG ============ -->
   <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
     <defs>
-      <!-- Клип красного сердечка для штриховки -->
       <clipPath id="heartClip">
         <path d="M100,175 C40,135 15,90 40,55 C65,25 95,40 100,65 C105,40 135,25 160,55 C185,90 160,135 100,175 Z"/>
       </clipPath>
 
-      <!-- ===== КРАСНОЕ СЕРДЕЧКО (как было изначально) ===== -->
+      <!-- КРАСНОЕ СЕРДЕЧКО -->
       <symbol id="icon-heart-big" viewBox="0 0 200 200">
         <g clip-path="url(#heartClip)" stroke="currentColor" stroke-width="4.5" stroke-linecap="round">
           <line x1="-20" y1="40"  x2="220" y2="0"/>
@@ -421,13 +565,11 @@
               fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
       </symbol>
 
-      <!-- Маленькое сердечко (для списка) -->
       <symbol id="icon-heart-sm" viewBox="0 0 40 40">
         <path d="M 20,34 C 8,26 4,20 4,14 C 4,9 8,5 13,5 C 16,5 19,7 20,11 C 21,7 24,5 27,5 C 32,5 36,9 36,14 C 36,20 32,26 20,34 Z"
               fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
       </symbol>
 
-      <!-- ===== КАЛЕНДАРЬ ===== -->
       <symbol id="icon-calendar" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
           <path d="M 6,12 Q 6,10 8.2,10 L 31.8,10 Q 34,10 34,12.2 L 34,33.5 Q 34,35 32.5,35 L 7.5,35 Q 6,35 6,33.5 Z"/>
@@ -444,7 +586,6 @@
         </g>
       </symbol>
 
-      <!-- ===== ЧАСЫ ===== -->
       <symbol id="icon-clock" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="20" cy="20" r="14"/>
@@ -452,7 +593,6 @@
         </g>
       </symbol>
 
-      <!-- ===== ГЕОМЕТКА ===== -->
       <symbol id="icon-pin" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
           <path d="M 20,5 C 27,5 33,11 33,18 C 33,28 20,36 20,36 C 20,36 7,28 7,18 C 7,11 13,5 20,5 Z"/>
@@ -460,7 +600,6 @@
         </g>
       </symbol>
 
-      <!-- ===== МЕТРО ===== -->
       <symbol id="icon-train" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
           <rect x="9" y="7" width="22" height="22" rx="3"/>
@@ -476,13 +615,11 @@
         </g>
       </symbol>
 
-      <!-- ===== ЗВЁЗДОЧКА-ИСКРА ===== -->
       <symbol id="icon-sparkle" viewBox="0 0 40 40">
         <path d="M 20,5 L 22,17 L 35,20 L 22,23 L 20,35 L 18,23 L 5,20 L 18,17 Z"
               fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round"/>
       </symbol>
 
-      <!-- ===== СМАЙЛИК ===== -->
       <symbol id="icon-smile" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="20" cy="20" r="14"/>
@@ -494,7 +631,6 @@
         </g>
       </symbol>
 
-      <!-- ===== ЛАПКА ===== -->
       <symbol id="icon-paw" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round">
           <ellipse cx="20" cy="26" rx="7.5" ry="6.5"/>
@@ -505,47 +641,34 @@
         </g>
       </symbol>
 
-      <!-- ===== КАПКЕЙК (для ужина) ===== -->
       <symbol id="icon-cupcake" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Обёртка (трапеция) -->
           <path d="M 10,20 L 30,20 L 27,34 L 13,34 Z"/>
-          <!-- Полоски на обёртке -->
           <line x1="15" y1="20" x2="14.5" y2="34"/>
           <line x1="20" y1="20" x2="20" y2="34"/>
           <line x1="25" y1="20" x2="25.5" y2="34"/>
-          <!-- Крем (купол) -->
           <path d="M 10,20 Q 10,10 20,10 Q 30,10 30,20"/>
-          <!-- Внутренняя завитушка крема -->
           <path d="M 14,20 Q 14,14 20,14 Q 26,14 26,20"/>
-          <!-- Вишенка -->
           <circle cx="20" cy="7" r="1.8"/>
         </g>
       </symbol>
 
-      <!-- ===== ЗВЁЗДЫ (для прогулки) ===== -->
       <symbol id="icon-stars" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
-          <!-- Большая звезда -->
           <path d="M 14,5 L 16.4,12.4 L 24,12.4 L 17.8,17 L 20.2,24.5 L 14,19.9 L 7.8,24.5 L 10.2,17 L 4,12.4 L 11.6,12.4 Z"/>
-          <!-- Маленькая звезда -->
           <path d="M 29,20 L 30.3,24 L 34.5,24 L 31.1,26.6 L 32.4,30.5 L 29,28 L 25.6,30.5 L 26.9,26.6 L 23.5,24 L 27.7,24 Z"/>
         </g>
       </symbol>
 
-      <!-- ===== ВИЛКА И НОЖ (для «вкусно поесть») ===== -->
       <symbol id="icon-food" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Вилка -->
           <line x1="12" y1="6" x2="12" y2="34"/>
           <path d="M 7,6 L 7,13 Q 12,17 17,13 L 17,6"/>
-          <!-- Нож -->
           <path d="M 27,34 L 27,20"/>
           <path d="M 27,6 Q 32,10 32,18 Q 32,21 27,20"/>
         </g>
       </symbol>
 
-      <!-- ===== ЦВЕТОК ===== -->
       <symbol id="icon-flower" viewBox="0 0 40 40">
         <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
           <ellipse cx="20" cy="9.5" rx="3.5" ry="5"/>
@@ -556,10 +679,15 @@
         </g>
       </symbol>
 
+      <!-- Звёздочка (для декора на фоне альбома) -->
+      <symbol id="icon-star-mini" viewBox="0 0 24 24">
+        <path d="M 12,2 L 13.5,9.5 L 21,11 L 13.5,12.5 L 12,20 L 10.5,12.5 L 3,11 L 10.5,9.5 Z"
+              fill="currentColor"/>
+      </symbol>
     </defs>
   </svg>
 
-  <!-- ================= КАРТОЧКА ================= -->
+  <!-- ============ КАРТОЧКА ============ -->
   <div class="card">
 
     <!-- Енот слева сверху -->
@@ -634,6 +762,270 @@
       <div class="detail-item">
         <svg class="icon detail-icon"><use href="#icon-train"/></svg>
         <span>м. Электрозаводская / Семёновская</span>
+      </div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- ============ ПОЛАРОИДЫ С ЕНОТАМИ ================= -->
+    <!-- ================================================== -->
+    <div class="album">
+
+      <div class="album-title">Кадры, которые нас ждут</div>
+
+      <!-- Веточка справа сверху -->
+      <svg class="dried-flower dried-flower-1" viewBox="0 0 100 150" aria-hidden="true">
+        <g stroke="#8a6d4a" stroke-width="1" fill="none" stroke-linecap="round">
+          <path d="M 50 150 Q 45 110 30 70 M 50 150 Q 55 105 72 55 M 50 150 Q 48 120 20 95 M 50 150 Q 53 120 78 100"/>
+        </g>
+        <g fill="#c9b89a">
+          <circle cx="30" cy="70" r="3"/>
+          <circle cx="72" cy="55" r="3.2"/>
+          <circle cx="20" cy="95" r="2.6"/>
+          <circle cx="78" cy="100" r="2.8"/>
+          <circle cx="35" cy="60" r="2"/>
+          <circle cx="68" cy="48" r="2"/>
+          <circle cx="24" cy="88" r="1.8"/>
+          <circle cx="82" cy="92" r="1.8"/>
+        </g>
+        <g fill="#b8a689">
+          <circle cx="35" cy="60" r="1"/>
+          <circle cx="68" cy="48" r="1"/>
+          <circle cx="24" cy="88" r="1"/>
+          <circle cx="82" cy="92" r="1"/>
+        </g>
+      </svg>
+
+      <!-- Веточка слева снизу -->
+      <svg class="dried-flower dried-flower-2" viewBox="0 0 100 150" aria-hidden="true">
+        <g stroke="#8a6d4a" stroke-width="1" fill="none" stroke-linecap="round">
+          <path d="M 50 10 Q 45 50 30 90 M 50 10 Q 55 55 72 105 M 50 10 Q 48 40 20 60"/>
+        </g>
+        <g fill="#c9b89a">
+          <circle cx="30" cy="90" r="3"/>
+          <circle cx="72" cy="105" r="3"/>
+          <circle cx="20" cy="60" r="2.6"/>
+          <circle cx="35" cy="82" r="2"/>
+          <circle cx="68" cy="98" r="2"/>
+        </g>
+      </svg>
+
+      <!-- Звёздочки -->
+      <svg class="star star-1" viewBox="0 0 24 24"><use href="#icon-star-mini"/></svg>
+      <svg class="star star-2" viewBox="0 0 24 24"><use href="#icon-star-mini"/></svg>
+      <svg class="star star-3" viewBox="0 0 24 24"><use href="#icon-star-mini"/></svg>
+      <svg class="star star-4" viewBox="0 0 24 24"><use href="#icon-star-mini"/></svg>
+      <svg class="star star-5" viewBox="0 0 24 24"><use href="#icon-star-mini"/></svg>
+
+      <div class="polaroids">
+
+        <!-- Полароид 1: енот ест ягоды -->
+        <div class="polaroid">
+          <div class="tape"></div>
+          <div class="photo">
+            <!-- Чтобы поставить своё фото, замените <svg>...</svg> на:
+                 <img src="raccoon1.jpg" alt="Енот">
+                 (файл можно загрузить в репозиторий GitHub) -->
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+              <!-- фон - тёплый пол комнаты -->
+              <rect width="100" height="100" fill="#e8d4b8"/>
+              <rect y="72" width="100" height="28" fill="#d4b896"/>
+              <!-- задняя стена с окном -->
+              <rect x="60" y="5" width="38" height="55" fill="#c5d4c0" opacity="0.7"/>
+              <line x1="79" y1="5" x2="79" y2="60" stroke="#8a9a85" stroke-width="1" opacity="0.6"/>
+              <line x1="60" y1="32" x2="98" y2="32" stroke="#8a9a85" stroke-width="1" opacity="0.6"/>
+              <!-- тело енота -->
+              <ellipse cx="40" cy="62" rx="24" ry="18" fill="#8a8a8a"/>
+              <ellipse cx="40" cy="66" rx="20" ry="12" fill="#a8a8a8"/>
+              <!-- голова -->
+              <ellipse cx="40" cy="42" rx="20" ry="18" fill="#b8b8b8"/>
+              <ellipse cx="40" cy="40" rx="20" ry="10" fill="#3a3a3a"/>
+              <circle cx="33" cy="40" r="3" fill="#ffffff"/>
+              <circle cx="47" cy="40" r="3" fill="#ffffff"/>
+              <circle cx="33.5" cy="41" r="1.7" fill="#1a1a1a"/>
+              <circle cx="47.5" cy="41" r="1.7" fill="#1a1a1a"/>
+              <!-- мордочка -->
+              <ellipse cx="40" cy="54" rx="11" ry="8" fill="#f5f0e8"/>
+              <ellipse cx="40" cy="51" rx="3" ry="2" fill="#2a2a2a"/>
+              <!-- язычок -->
+              <ellipse cx="40" cy="58" rx="3" ry="2" fill="#e88a8a"/>
+              <!-- ушки -->
+              <ellipse cx="26" cy="28" rx="5" ry="6" fill="#a8a8a8"/>
+              <ellipse cx="54" cy="28" rx="5" ry="6" fill="#a8a8a8"/>
+              <ellipse cx="26" cy="29" rx="2.5" ry="3" fill="#f0c0c0"/>
+              <ellipse cx="54" cy="29" rx="2.5" ry="3" fill="#f0c0c0"/>
+              <!-- лапки на столе -->
+              <ellipse cx="28" cy="78" rx="6" ry="4" fill="#3a3a3a"/>
+              <ellipse cx="52" cy="78" rx="6" ry="4" fill="#3a3a3a"/>
+              <!-- миска с ягодами -->
+              <ellipse cx="78" cy="82" rx="18" ry="5" fill="#b0b0b0"/>
+              <ellipse cx="78" cy="80" rx="18" ry="5" fill="#d8d8d8"/>
+              <ellipse cx="78" cy="80" rx="15" ry="3.5" fill="#a02020"/>
+              <circle cx="72" cy="78" r="2" fill="#c0392b"/>
+              <circle cx="78" cy="77" r="2.2" fill="#e74c3c"/>
+              <circle cx="84" cy="78" r="2" fill="#8b2020"/>
+              <circle cx="75" cy="79" r="1.5" fill="#5a1515"/>
+              <circle cx="81" cy="79" r="1.5" fill="#5a1515"/>
+              <!-- тёплая виньетка -->
+              <rect width="100" height="100" fill="#c8956b" opacity="0.12"/>
+            </svg>
+          </div>
+          <div class="polaroid-caption">Енот-банда</div>
+        </div>
+
+        <!-- Полароид 2: енот на качелях -->
+        <div class="polaroid">
+          <div class="tape"></div>
+          <div class="photo">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="100" fill="#c8c8c0"/>
+              <!-- стена с узором -->
+              <rect width="100" height="65" fill="#5a5a52"/>
+              <!-- узор на стене -->
+              <g opacity="0.8">
+                <rect x="5" y="15" width="6" height="30" fill="#d4a84a"/>
+                <rect x="15" y="10" width="6" height="40" fill="#e8c878"/>
+                <rect x="25" y="15" width="6" height="30" fill="#c89838"/>
+                <rect x="45" y="12" width="6" height="35" fill="#d4a84a"/>
+                <rect x="55" y="8"  width="6" height="45" fill="#e8c878"/>
+                <rect x="65" y="15" width="6" height="30" fill="#c89838"/>
+                <rect x="85" y="10" width="6" height="40" fill="#d4a84a"/>
+              </g>
+              <!-- пол -->
+              <rect y="65" width="100" height="35" fill="#9a9a94"/>
+              <!-- верёвки качелей -->
+              <line x1="42" y1="0" x2="38" y2="42" stroke="#e8b838" stroke-width="1.5"/>
+              <line x1="60" y1="0" x2="64" y2="42" stroke="#e8b838" stroke-width="1.5"/>
+              <!-- бусины на верёвках -->
+              <circle cx="40" cy="20" r="2.2" fill="#c0392b"/>
+              <circle cx="39" cy="30" r="2.2" fill="#2a8b3a"/>
+              <circle cx="38.5" cy="38" r="2" fill="#3a6b9b"/>
+              <circle cx="62" cy="20" r="2.2" fill="#c0392b"/>
+              <circle cx="63" cy="30" r="2.2" fill="#2a8b3a"/>
+              <circle cx="63.5" cy="38" r="2" fill="#3a6b9b"/>
+              <!-- сиденье качелей -->
+              <rect x="34" y="42" width="32" height="5" fill="#c9a875"/>
+              <rect x="34" y="47" width="32" height="2" fill="#8a7048"/>
+              <!-- тело енота -->
+              <ellipse cx="50" cy="52" rx="20" ry="14" fill="#5a5048"/>
+              <ellipse cx="50" cy="55" rx="16" ry="10" fill="#7a6e60"/>
+              <!-- пушистый хвост -->
+              <path d="M 32 58 Q 22 70 28 82 Q 34 78 36 66 Z" fill="#5a5048"/>
+              <path d="M 28 82 Q 24 84 26 88" stroke="#3a3028" stroke-width="1.5" fill="none"/>
+              <!-- голова -->
+              <ellipse cx="54" cy="38" rx="15" ry="13" fill="#b8b0a8"/>
+              <ellipse cx="54" cy="36" rx="15" ry="8" fill="#3a3a3a"/>
+              <circle cx="48" cy="36" r="2.5" fill="#ffffff"/>
+              <circle cx="60" cy="36" r="2.5" fill="#ffffff"/>
+              <circle cx="48" cy="37" r="1.5" fill="#1a1a1a"/>
+              <circle cx="60" cy="37" r="1.5" fill="#1a1a1a"/>
+              <ellipse cx="54" cy="46" rx="9" ry="7" fill="#f5f0e8"/>
+              <ellipse cx="54" cy="44" rx="2.5" ry="1.8" fill="#2a2a2a"/>
+              <path d="M 51 48 Q 54 51 57 48" stroke="#2a2a2a" stroke-width="1" fill="none"/>
+              <!-- ушки -->
+              <ellipse cx="42" cy="28" rx="4" ry="5" fill="#a8a098"/>
+              <ellipse cx="66" cy="28" rx="4" ry="5" fill="#a8a098"/>
+              <ellipse cx="42" cy="29" rx="2" ry="2.5" fill="#e8b8b8"/>
+              <ellipse cx="66" cy="29" rx="2" ry="2.5" fill="#e8b8b8"/>
+              <!-- виньетка -->
+              <rect width="100" height="100" fill="#a08a60" opacity="0.15"/>
+            </svg>
+          </div>
+          <div class="polaroid-caption">на качелях</div>
+        </div>
+
+        <!-- Полароид 3: енот на горке -->
+        <div class="polaroid">
+          <div class="tape"></div>
+          <div class="photo">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="100" fill="#d0cfc8"/>
+              <!-- стена с узором -->
+              <rect width="100" height="70" fill="#6a6a5c"/>
+              <g opacity="0.75">
+                <rect x="8" y="20" width="5" height="25" fill="#d4a84a"/>
+                <rect x="18" y="15" width="5" height="35" fill="#e8c878"/>
+                <rect x="28" y="20" width="5" height="25" fill="#c89838"/>
+                <rect x="48" y="18" width="5" height="30" fill="#d4a84a"/>
+                <rect x="58" y="12" width="5" height="40" fill="#e8c878"/>
+                <rect x="68" y="20" width="5" height="25" fill="#c89838"/>
+                <rect x="85" y="15" width="5" height="35" fill="#d4a84a"/>
+              </g>
+              <rect y="70" width="100" height="30" fill="#a8a8a2"/>
+              <!-- горка -->
+              <path d="M 20 25 L 25 25 L 55 78 L 45 78 Z" fill="#e8b820"/>
+              <path d="M 25 25 L 30 30 L 58 78 L 55 78 Z" fill="#c89820"/>
+              <!-- лестница горки -->
+              <rect x="8" y="25" width="3" height="55" fill="#f0f0e8"/>
+              <rect x="18" y="25" width="3" height="55" fill="#f0f0e8"/>
+              <rect x="8" y="35" width="13" height="2" fill="#f0f0e8"/>
+              <rect x="8" y="50" width="13" height="2" fill="#f0f0e8"/>
+              <rect x="8" y="65" width="13" height="2" fill="#f0f0e8"/>
+              <!-- енот съезжает -->
+              <ellipse cx="42" cy="55" rx="14" ry="11" fill="#5a5048"/>
+              <ellipse cx="42" cy="58" rx="11" ry="8" fill="#7a6e60"/>
+              <ellipse cx="46" cy="46" rx="11" ry="10" fill="#b8b0a8"/>
+              <ellipse cx="46" cy="44" rx="11" ry="6" fill="#3a3a3a"/>
+              <circle cx="42" cy="44" r="2" fill="#ffffff"/>
+              <circle cx="51" cy="44" r="2" fill="#ffffff"/>
+              <circle cx="42" cy="45" r="1.2" fill="#1a1a1a"/>
+              <circle cx="51" cy="45" r="1.2" fill="#1a1a1a"/>
+              <ellipse cx="46" cy="52" rx="7" ry="5" fill="#f5f0e8"/>
+              <ellipse cx="46" cy="50" rx="2" ry="1.5" fill="#2a2a2a"/>
+              <ellipse cx="37" cy="38" rx="3" ry="4" fill="#a8a098"/>
+              <ellipse cx="55" cy="38" rx="3" ry="4" fill="#a8a098"/>
+              <!-- хвост -->
+              <path d="M 30 58 Q 22 62 24 72 Q 30 68 34 62 Z" fill="#5a5048"/>
+              <rect width="100" height="100" fill="#c8a878" opacity="0.12"/>
+            </svg>
+          </div>
+          <div class="polaroid-caption">с горки</div>
+        </div>
+
+        <!-- Полароид 4: енот крупным планом -->
+        <div class="polaroid">
+          <div class="tape"></div>
+          <div class="photo">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="100" fill="#c8b898"/>
+              <!-- размытый фон -->
+              <ellipse cx="20" cy="20" rx="30" ry="25" fill="#b8a888" opacity="0.6"/>
+              <ellipse cx="85" cy="80" rx="35" ry="30" fill="#b8a888" opacity="0.6"/>
+              <!-- тело -->
+              <ellipse cx="50" cy="80" rx="32" ry="25" fill="#5a5048"/>
+              <ellipse cx="50" cy="84" rx="26" ry="18" fill="#7a6e60"/>
+              <!-- голова крупным планом -->
+              <ellipse cx="50" cy="48" rx="32" ry="30" fill="#c8c0b8"/>
+              <ellipse cx="50" cy="42" rx="32" ry="18" fill="#3a3a3a"/>
+              <!-- ушки -->
+              <ellipse cx="22" cy="22" rx="8" ry="10" fill="#b8b0a8"/>
+              <ellipse cx="78" cy="22" rx="8" ry="10" fill="#b8b0a8"/>
+              <ellipse cx="22" cy="24" rx="4.5" ry="6" fill="#e8b8b8"/>
+              <ellipse cx="78" cy="24" rx="4.5" ry="6" fill="#e8b8b8"/>
+              <!-- глаза -->
+              <circle cx="38" cy="42" r="5.5" fill="#ffffff"/>
+              <circle cx="62" cy="42" r="5.5" fill="#ffffff"/>
+              <circle cx="38" cy="43" r="3.2" fill="#1a1a1a"/>
+              <circle cx="62" cy="43" r="3.2" fill="#1a1a1a"/>
+              <circle cx="39" cy="41.5" r="1.2" fill="#ffffff"/>
+              <circle cx="63" cy="41.5" r="1.2" fill="#ffffff"/>
+              <!-- мордочка -->
+              <ellipse cx="50" cy="62" rx="16" ry="12" fill="#f5f0e8"/>
+              <!-- нос -->
+              <ellipse cx="50" cy="58" rx="4" ry="3" fill="#1a1a1a"/>
+              <!-- ротик -->
+              <path d="M 46 64 Q 50 68 54 64" stroke="#1a1a1a" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+              <!-- усы -->
+              <line x1="30" y1="60" x2="42" y2="62" stroke="#3a3a3a" stroke-width="0.8"/>
+              <line x1="30" y1="64" x2="42" y2="65" stroke="#3a3a3a" stroke-width="0.8"/>
+              <line x1="70" y1="60" x2="58" y2="62" stroke="#3a3a3a" stroke-width="0.8"/>
+              <line x1="70" y1="64" x2="58" y2="65" stroke="#3a3a3a" stroke-width="0.8"/>
+              <!-- тёплая виньетка -->
+              <rect width="100" height="100" fill="#a08060" opacity="0.15"/>
+            </svg>
+          </div>
+          <div class="polaroid-caption">18.09 · Енот-банда</div>
+        </div>
+
       </div>
     </div>
 
@@ -724,7 +1116,6 @@
   </div>
 
 <script>
-  /* ---------- Праздничные сердечки при нажатии ---------- */
   const HEARTS = ['❤️', '💖', '💗', '💓', '💕', '💝', '💘'];
   const BALLOONS = ['🎈', '🎈', '🎈', '🎉', '✨', '🌸'];
 
@@ -750,7 +1141,6 @@
     }
   }
 
-  /* ---------- Кнопки ---------- */
   const yesBtn = document.getElementById('yesBtn');
   const ofCourseBtn = document.getElementById('ofCourseBtn');
   const buttonsBlock = document.getElementById('buttonsBlock');
